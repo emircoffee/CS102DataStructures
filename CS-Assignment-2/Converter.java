@@ -1,6 +1,7 @@
 import java.util.List;
 
 // Converter class which will take given infix expression and convert it to a postfix expression
+// Updated to work with usecases it didn't previously work with in assignment 2
 public class Converter {
 
     private String infix;
@@ -44,7 +45,6 @@ public class Converter {
         while (!helperStack.isEmpty()) {
             output = output + helperStack.pop() + " ";
         }
-        System.out.println("Your infix expression converted to postfix is: " + output);
         return output;
     }
 
@@ -95,15 +95,11 @@ public class Converter {
 
             if (token.equals("^")) {
 
-                if (helperStack.top().equals("(")) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return true;
             }
 
             if (token.equals("*") || token.equals("/")) {
-                if (helperStack.top().equals("(") ) {
+                if (helperStack.top().equals("(")  || helperStack.top().equals("-") || helperStack.top().equals("+") || token.equals("*") || token.equals("/") || token.equals("^")) {
                     return true;
                 } else {
                     return false;
@@ -111,7 +107,7 @@ public class Converter {
             }
 
             if (token.equals("+") || token.equals("-")) {
-                if (helperStack.top().equals("(") || helperStack.top().equals("*") || helperStack.top().equals("/") ) {
+                if (helperStack.top().equals("(")) {
                     return true;
                 } else {
                     return false;
