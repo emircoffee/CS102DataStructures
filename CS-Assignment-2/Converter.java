@@ -45,6 +45,7 @@ public class Converter {
         while (!helperStack.isEmpty()) {
             output = output + helperStack.pop() + " ";
         }
+        System.out.println("Your infix expression converted to postfix is: " + output);
         return output;
     }
 
